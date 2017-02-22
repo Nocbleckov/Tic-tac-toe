@@ -20,17 +20,28 @@ public class Estructuras {
         this.casillas = tab.getCasillas();
     }
 
-    public boolean col(Casilla.Propietario a, int numCol) {
+    public boolean colVal(Casilla.Propietario a, int numCol) {
 
-        for (int i = numCol - 1; i <= 8; i += 3) {
-            if (casillas[i].getPropietario() != a) {
+        for (int i = numCol - 1; i <= (numCol - 1) + 6; i += 3) {
+            if (casillas[i].getPropietario() != a
+                    || casillas[i].getPropietario() != Casilla.Propietario.LIBRE) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean fil(Casilla.Propietario a, int numFil) {
+    public boolean filVal(Casilla.Propietario a, int numFil) {
+        for (int i = numFil - 1; i <= (numFil - 1) + 2; i++) {
+            if (casillas[i].getPropietario() != a
+                    || casillas[i].getPropietario() != Casilla.Propietario.LIBRE) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean diagVal(Casilla.Propietario a, int numDiag) {
         return false;
     }
 
