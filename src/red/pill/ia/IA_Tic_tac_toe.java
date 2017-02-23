@@ -3,6 +3,7 @@ package red.pill.ia;
 import java.awt.Color;
 import red.pill.Casilla;
 import red.pill.Ficha;
+import red.pill.Listener.ControlTurno;
 import red.pill.Tablero;
 
 /*
@@ -14,7 +15,7 @@ import red.pill.Tablero;
  *
  * @author Daniel Noblecias
  */
-public class IA_Tic_tac_toe {
+public class IA_Tic_tac_toe implements ControlTurno {
 
     private Tablero tablero;
     private String nombre = "";
@@ -22,6 +23,8 @@ public class IA_Tic_tac_toe {
 
     private Ficha[] fichas;
     private Casilla[] casillas;
+
+    private boolean turno = true;
 
     public IA_Tic_tac_toe(String nombre, Tablero tablero) {
         this.tablero = tablero;
@@ -40,6 +43,7 @@ public class IA_Tic_tac_toe {
             if (casillas[i].getPropietario() == Casilla.Propietario.LIBRE) {
                 casillas[i] = colocarFicha(casillas[i]);
             }
+            tablero.repaint();
         }
     }
 
@@ -55,6 +59,14 @@ public class IA_Tic_tac_toe {
             casilla.setOcupada(true);
         }
         return casilla;
+    }
+
+    @Override
+    public void AccionTurno() {
+        if (turno) {
+            dummiIA();
+            turno = false;
+        }
     }
 
 }

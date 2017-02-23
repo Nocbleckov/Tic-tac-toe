@@ -24,10 +24,9 @@ public class Principal {
         ventana.setVisible(true);
 
         Tablero tab = new Tablero();
-        tab.addMouseListener(new ClickListener(tab));
+        /*tab.addMouseListener(new ClickListener(tab));*/
         ventana.add(tab);
         ventana.repaint();
-        tab.controlJuego();
 
     }
 }

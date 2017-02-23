@@ -42,8 +42,7 @@ public class Tablero extends JPanel {
     }
 
     public void controlJuego() {
-        IA_Tic_tac_toe ia_gato = new IA_Tic_tac_toe("Gatete", this);
-        ia_gato.tirada();
+        
     }
 
     @Override
