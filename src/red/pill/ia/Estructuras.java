@@ -42,7 +42,26 @@ public class Estructuras {
     }
 
     public boolean diagVal(Casilla.Propietario a, int numDiag) {
-        return false;
+        switch (numDiag) {
+            case 1:
+                for (int i = 0; i <= 8; i += 4) {
+                    Casilla temp = casillas[i];
+                    if (temp.getPropietario() != a || temp.getPropietario() != Casilla.Propietario.LIBRE) {
+                        return false;
+                    }
+                }
+                return true;
+            case 2:
+                for (int i = 2; i <= 6; i += 2) {
+                    Casilla temp = casillas[i];
+                    if (temp.getPropietario() != a || temp.getPropietario() != Casilla.Propietario.LIBRE) {
+                        return false;
+                    }
+                }
+                return true;
+            default:
+                return false;
+        }
     }
 
 }

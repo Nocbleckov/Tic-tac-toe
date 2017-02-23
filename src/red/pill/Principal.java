@@ -26,6 +26,8 @@ public class Principal {
         Tablero tab = new Tablero();
         tab.addMouseListener(new ClickListener(tab));
         ventana.add(tab);
+        ventana.repaint();
+        tab.controlJuego();
 
     }
 }

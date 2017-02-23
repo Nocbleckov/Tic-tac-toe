@@ -7,6 +7,7 @@ package red.pill;
 
 import java.awt.Graphics;
 import javax.swing.JPanel;
+import red.pill.ia.IA_Tic_tac_toe;
 
 /**
  *
@@ -38,6 +39,11 @@ public class Tablero extends JPanel {
             }
         }
         casF = true;
+    }
+
+    public void controlJuego() {
+        IA_Tic_tac_toe ia_gato = new IA_Tic_tac_toe("Gatete", this);
+        ia_gato.tirada();
     }
 
     @Override
