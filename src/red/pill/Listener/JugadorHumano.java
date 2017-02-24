@@ -17,17 +17,20 @@ import red.pill.Tablero;
  *
  * @author Daniel
  */
-public class JugadorHumano implements MouseListener, ControlTurno {
+public class JugadorHumano implements MouseListener {
 
     private String nombre;
     private boolean turno = false;
     public BoundingBox clcBox;
     private Casilla[] casillas;
     private Ficha[] fichas;
-    Tablero tab;
+    Tablero tablero;
 
-    public JugadorHumano(String nombre) {
+    public JugadorHumano(String nombre, Tablero tablero) {
         this.nombre = nombre;
+        this.tablero = tablero;
+        this.casillas = tablero.getCasillas();
+        this.fichas = tablero.getFichas();
     }
 
     @Override
@@ -46,7 +49,7 @@ public class JugadorHumano implements MouseListener, ControlTurno {
                 temp.setPropietario(Casilla.Propietario.USUARIO);
                 agregarFicha(temp);
             }
-            tab.repaint();
+            tablero.repaint();
         }
     }
 
@@ -88,12 +91,12 @@ public class JugadorHumano implements MouseListener, ControlTurno {
         }
     }
 
-    /*public void setTurno() {
-        this.turno = !turno;
-    }*/
-    @Override
-    public void AccionTurno() {
-        turno = true;
+    public void setTurno(boolean turno) {
+        this.turno = turno;
+    }
+
+    public boolean getTurno() {
+        return this.turno;
     }
 
 }
