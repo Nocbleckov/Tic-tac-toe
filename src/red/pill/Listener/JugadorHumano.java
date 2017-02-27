@@ -12,6 +12,7 @@ import javafx.geometry.BoundingBox;
 import red.pill.Casilla;
 import red.pill.Ficha;
 import red.pill.Tablero;
+import red.pill.ia.IA_Tic_tac_toe;
 
 /**
  *
@@ -25,6 +26,7 @@ public class JugadorHumano implements MouseListener {
     private Casilla[] casillas;
     private Ficha[] fichas;
     Tablero tablero;
+    IA_Tic_tac_toe ia;
 
     public JugadorHumano(String nombre, Tablero tablero) {
         this.nombre = nombre;
@@ -35,7 +37,6 @@ public class JugadorHumano implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -48,8 +49,14 @@ public class JugadorHumano implements MouseListener {
                 temp.setOcupada(true);
                 temp.setPropietario(Casilla.Propietario.USUARIO);
                 agregarFicha(temp);
+
+                setTurno(false);
+                ia.setTurno(true);
+                ia.dummiIA();
+
             }
             tablero.repaint();
+
         }
     }
 
@@ -60,12 +67,10 @@ public class JugadorHumano implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Casilla enCasilla() {
@@ -99,4 +104,7 @@ public class JugadorHumano implements MouseListener {
         return this.turno;
     }
 
+    public void setIa(IA_Tic_tac_toe ia) {
+        this.ia = ia;
+    }
 }

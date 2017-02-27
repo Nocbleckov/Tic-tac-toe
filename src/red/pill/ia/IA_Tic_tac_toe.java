@@ -3,6 +3,7 @@ package red.pill.ia;
 import java.awt.Color;
 import red.pill.Casilla;
 import red.pill.Ficha;
+import red.pill.Listener.JugadorHumano;
 import red.pill.Tablero;
 
 /*
@@ -22,6 +23,7 @@ public class IA_Tic_tac_toe {
 
     private Ficha[] fichas;
     private Casilla[] casillas;
+    private JugadorHumano ih;
 
     private boolean turno = false;
 
@@ -38,13 +40,24 @@ public class IA_Tic_tac_toe {
     }
 
     public void dummiIA() {
-        for (int i = 0; i < casillas.length; i++) {
-            if (casillas[i].getPropietario() == Casilla.Propietario.LIBRE) {
-                casillas[i] = colocarFicha(casillas[i]);
-                break;
+        if (turno && ih.getTurno() == false) {
+            for (int i = 0; i < casillas.length; i++) {
+                if (casillas[i].getPropietario() == Casilla.Propietario.LIBRE) {
+                    casillas[i] = colocarFicha(casillas[i]);
+                    System.out.println(casillas[i].getPropietario());
+                    break;
+                }
             }
+            tablero.repaint();
+            setTurno(false);
+            ih.setTurno(true);
         }
-        tablero.repaint();
+    }
+
+    public void IA() {
+        if (turno) {
+            
+        }
     }
 
     private Casilla colocarFicha(Casilla casilla) {
@@ -57,6 +70,7 @@ public class IA_Tic_tac_toe {
                 }
             }
             casilla.setOcupada(true);
+            casilla.setPropietario(Casilla.Propietario.IA);
         }
         return casilla;
     }
@@ -69,4 +83,7 @@ public class IA_Tic_tac_toe {
         return this.turno;
     }
 
+    public void setIh(JugadorHumano ih) {
+        this.ih = ih;
+    }
 }

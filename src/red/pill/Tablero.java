@@ -7,7 +7,6 @@ package red.pill;
 
 import java.awt.Graphics;
 import javax.swing.JPanel;
-import red.pill.ia.IA_Tic_tac_toe;
 
 /**
  *

@@ -24,38 +24,31 @@ public class ControlJuego {
     private Casilla[] casillas;
     private Ficha[] fichas;
 
-    private ControlJuego(Tablero tablero, boolean inicial) {
+    public ControlJuego(boolean inicial) {
 
-        this.tablero = tablero;
+        this.tablero = new Tablero();
         casillas = tablero.getCasillas();
         fichas = tablero.getFichas();
 
         IH = new JugadorHumano("Daniel", tablero);
         IA = new IA_Tic_tac_toe("Susy", tablero);
 
+        IH.setIa(IA);
+        IA.setIh(IH);
+
+        tablero.addMouseListener(IH);
+
         if (inicial) {
             IH.setTurno(true);
-            
+
         } else {
             IA.setTurno(true);
         }
 
     }
 
-    public void iniciar() {
-        new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    if (IA.getTurno()) {
-                        IA.dummiIA();
-                        IA.setTurno(false);
-                        IH.setTurno(true);
-                    } else if (IH.getTurno()) {
-                    }
-                }
-            }
-        }.run();
+    public Tablero getTablero() {
+        return tablero;
     }
 
 }

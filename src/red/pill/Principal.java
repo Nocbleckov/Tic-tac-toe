@@ -7,6 +7,7 @@ package red.pill;
 
 import javax.swing.JFrame;
 import red.pill.Listener.ClickListener;
+import red.pill.Listener.ControlJuego;
 
 /**
  *
@@ -23,10 +24,15 @@ public class Principal {
         ventana.setResizable(false);
         ventana.setVisible(true);
 
-        Tablero tab = new Tablero();
-        tab.addMouseListener(new ClickListener(tab));
+        /*Tablero tab = new Tablero();
+        //tab.addMouseListener(new ClickListener(tab));
+        ventana.add(tab);
+        ventana.repaint();*/
+        
+        ControlJuego c = new ControlJuego(true);
+        Tablero tab = c.getTablero();
         ventana.add(tab);
         ventana.repaint();
-
+        
     }
 }

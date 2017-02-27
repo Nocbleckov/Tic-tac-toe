@@ -5,6 +5,7 @@
  */
 package red.pill.ia;
 
+import java.util.HashMap;
 import red.pill.Casilla;
 import red.pill.Tablero;
 
@@ -15,9 +16,21 @@ import red.pill.Tablero;
 public class Estructuras {
 
     private Casilla[] casillas;
+    private HashMap<Casilla, Integer> jugadas;
 
     public Estructuras(Tablero tab) {
         this.casillas = tab.getCasillas();
+        jugadas = new HashMap<>();
+    }
+
+    private Casilla.Propietario contrario(Casilla.Propietario a) {
+        if (a == Casilla.Propietario.IA) {
+            return Casilla.Propietario.USUARIO;
+        } else if (a == Casilla.Propietario.USUARIO) {
+            return Casilla.Propietario.IA;
+        } else {
+            return null;
+        }
     }
 
     public boolean colVal(Casilla.Propietario a, int numCol) {
@@ -62,6 +75,22 @@ public class Estructuras {
             default:
                 return false;
         }
+    }
+
+    public Casilla obtMM(Casilla.Propietario a) {
+        Casilla temp = null;
+
+        for (int i = 0; i < casillas.length; i++) {
+            if (casillas[i].getPropietario() == Casilla.Propietario.LIBRE) {
+                casillas[i].setPropietario(a);
+                for (int y = 0; y < casillas.length; y++) {
+                    if (casillas[i].getPropietario() == Casilla.Propietario.LIBRE) {
+                        casillas[i].setPropietario(contrario(a));
+                    }
+                }
+            }
+        }
+        return temp;
     }
 
 }
